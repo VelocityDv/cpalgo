@@ -14,6 +14,7 @@ bool dfs(const vector<vector<int>>& adj, vector<bool>& visited, int node) {
 	return true;
 }
 
+
 // optimised using color read cp algorithms website
 // https://cp-algorithms.com/graph/depth-first-search.html
 bool dfs(const vector<vector<int>>& adj, vector<int>& color, int node) {
