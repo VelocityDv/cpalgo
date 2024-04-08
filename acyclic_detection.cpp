@@ -16,6 +16,8 @@ public:
         color[node] = 2;
         return true;
     }
+    // numCoursese = n
+    // prerequisities are the connections.
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         
         if(prerequisites.size() == 0)
