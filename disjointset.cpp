@@ -18,14 +18,6 @@
 //https://www.youtube.com/watch?v=wU6udHRIkcc&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O&index=17
 
 
-#include <bits/stdc++.h>
-
-using namespace std;
-
-vector<int> parents;
-vector<int> rank;
-vector<int> size;
-
 // dummy implimentation
 // void make_set(int v){
 // 	parent[v] = v;
@@ -49,11 +41,17 @@ vector<int> size;
 
 //optimised union by rank based on depthh
 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> parent;
+vector<int> ranks;
+
 void make_set(int v){
 	parent[v] = v;
-	size[v] = 0;
+	ranks[v] = 0;
 } 
-
 
 
 int find_set(int v){
@@ -69,12 +67,12 @@ void union_sets(int a, int b){
 	b = find_set(b);
 
 	if (a != b){
-		if (rank[a] < rank[b]){
+		if (ranks[a] < ranks[b]){
             swap(a, b);
 		}
         parent[b] = a;
-        if (rank[a] == rank[b]){
-            rank[a]++;
+        if (ranks[a] == ranks[b]){
+            ranks[a]++;
         }
 	}
 }
@@ -82,15 +80,31 @@ void union_sets(int a, int b){
 int main(){
 	//lets say we just get edges
 
-	int n;
-	cin >> n;
-	vector<vector<int>> edge;
+#ifndef LOCAL
+    freopen("input.txt", "r", stdin);     
+    freopen("output.txt", "w", stdout);     
+#endif
+
+	int n, m;
+	cin >> n >> m;
+
+
+	vector<vector<int>> edge(m + 1, vector<int>(2, 0));
+
+	for(int i = 0; i < m; i++){
+		cin >> edge[i][0] >> edge[i][1];
+	}
 
 	// get edges
+	parent.resize(n);
+	ranks.resize(n);
+
 
 	for(int i = 0; i < n; i++){
 		make_set(i);
 	}
+
+
 
 	for(int i = 0; i < edge.size(); i++){
 		int a = edge[i][0];
@@ -105,6 +119,11 @@ int main(){
 		else{
 			union_sets(a, b);
 		}
+
+		for(int i = 0; i < n; i++){
+			cout << ranks[i] << " ";
+		}
+		cout << endl;
 	}
 
 	

@@ -1,3 +1,12 @@
+/*
+
+optimal pathing from 1 place to another
+
+from start node to finish node. 
+
+*/
+
+
 vector<vector<pair<int, int>>> adj(n);
 vector<bool> visited(n, false);
 vector<int> dist(n, INF);
