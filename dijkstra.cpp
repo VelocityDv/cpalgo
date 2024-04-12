@@ -4,13 +4,15 @@ optimal pathing from 1 place to another
 
 from start node to finish node. 
 
+uses idea of greedy algorithm and relaxation .
+
 */
 
 
 vector<vector<pair<int, int>>> adj(n);
 vector<bool> visited(n, false);
 vector<int> dist(n, INF);
-vector<int> p(n, -1);
+vector<int> parents(n, -1);
 
 
 // dijstras algoirhtm 
@@ -20,6 +22,7 @@ dist[start] = 0;
 
 for(int i = 0; i < n; i++){
 	// keeping track of the smallest vertex distance 
+    //// Find the unvisited vertex with the smallest distance
 	int v = -1;
 	for (int j = 0; j < n; j++) {
         if (!visited[j] && (v == -1 || dist[j] < dist[v])){
@@ -36,11 +39,11 @@ for(int i = 0; i < n; i++){
     visited[v] = true;
     for (auto edge : adj[v]) {
         int to = edge.first;
-        int len = edge.second;
+        int cost = edge.second;
 
-        if (dist[v] + len < dist[to]) {
-            dist[to] = dist[v] + len;
-            p[to] = v;
+        if (dist[v] + cost < dist[to]) {
+            dist[to] = dist[v] + cost;
+            parents[to] = v;
         }
     }
 }
