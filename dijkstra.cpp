@@ -22,7 +22,8 @@ dist[start] = 0;
 
 for(int i = 0; i < n; i++){
 	// keeping track of the smallest vertex distance 
-    //// Find the unvisited vertex with the smallest distance
+    //Find the unvisited vertex with the smallest distance
+    // sometimes people use heap to optimize this time to o(log n)
 	int v = -1;
 	for (int j = 0; j < n; j++) {
         if (!visited[j] && (v == -1 || dist[j] < dist[v])){
